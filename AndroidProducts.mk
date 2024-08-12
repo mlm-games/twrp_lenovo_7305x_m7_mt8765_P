@@ -6,9 +6,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/twrp_mt8765_P.mk
+    $(LOCAL_DIR)/omni_mt8765_P.mk
 
 COMMON_LUNCH_CHOICES := \
-    twrp_mt8765_P-user \
-    twrp_mt8765_P-userdebug \
-    twrp_mt8765_P-eng
+    omni_mt8765_P-user \
+    omni_mt8765_P-userdebug \
+    omni_mt8765_P-eng
