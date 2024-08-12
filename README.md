@@ -1,4 +1,4 @@
-# Android device tree for Lenovo Lenovo TB-7305X (mt8765_P)
+# Android twrp device tree for Lenovo TB-7305X (mt8765_P)
 
 
 Works after unlocking bootloader and flashing recovery by fastboot.
