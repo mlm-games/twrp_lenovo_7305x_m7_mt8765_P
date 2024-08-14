@@ -23,14 +23,14 @@ PRODUCT_MANUFACTURER := lenovo
 
 
 # Forcefully add mtp support (adb is already there)
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp \
-    persist.traced.enable=1 
+# PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+#    persist.sys.usb.config=mtp \
+#    persist.traced.enable=1 
 #    ro.com.google.locationfeatures=1 \
 #    ro.setupwizard.mode=DISABLED \
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.traced.enable=1
+# PRODUCT_PROPERTY_OVERRIDES += \
+#    persist.traced.enable=1
 
 PRODUCT_GMS_CLIENTID_BASE := android-lenovo-rev2
 

@@ -8,4 +8,4 @@
 LOCAL_PATH := device/lenovo/mt8765_P
 
 
-PRODUCT_PACKAGES += com.android.future.usb.accessory # (may be needed for MTP)
+# PRODUCT_PACKAGES += com.android.future.usb.accessory # (may be needed for MTP)

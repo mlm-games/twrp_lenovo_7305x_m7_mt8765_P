@@ -100,13 +100,17 @@ TW_MAX_BRIGHTNESS := 190
 # BOARD_USERDATAIMAGE_PARTITION_SIZE := 25686630400 # 24499MB in bytes
 
 # # MTP
-TW_MTP_DEVICE := /dev/mtp_usb
-TW_MTP_STORAGE_ID := 65537
+# TW_MTP_DEVICE := /dev/mtp_usb
+# TW_MTP_STORAGE_ID := 65537
 # TW_MTP_DEVICE := ? #(name of device to will show on pc)
+# TARGET_VENDOR_ID := 0x0e8d
+# TARGET_PRODUCT_ID := 0x2008
+# BOARD_USES_MTP := true
+
 
 # Internal storage settings
-TW_INTERNAL_STORAGE_PATH := "/data/media"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+#TW_INTERNAL_STORAGE_PATH := "/data/media"
+#TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 
 # # Crypto
 TW_INCLUDE_CRYPTO := true
@@ -124,15 +128,15 @@ TW_USE_FSCRYPT_POLICY := 1
 # Save Space (Flags from - https://xdaforums.com/t/twrp-flags-for-boardconfig-mk.3333970/)
 TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_EXCLUDE_APP_MANAGER := true
-BOARD_HAS_NO_REAL_SDCARD := true # disables things like sdcard partitioning and may save you some space if TWRP isn't fitting in your recovery partition
+BOARD_HAS_NO_REAL_SDCARD := true # disables things like sdcard partitioning and may save you some space if TWRP isn't fitting in your recovery partition (for system-as-root?)
 TW_NO_EXFAT_FUSE := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := false
 TARGET_BOOTANIMATION_USE_RGB565 := true
-TW_NO_SCREEN_TIMEOUT := true
+#TW_NO_SCREEN_TIMEOUT := true
 TW_EXTRA_LANGUAGES := false
 
 
-# This would work here?
+# This would work here? (for system-as-root)
 RECOVERY_SDCARD_ON_DATA := true
 
 # # Disables MTP
@@ -145,3 +149,5 @@ RECOVERY_SDCARD_ON_DATA := true
 #BOARD_UMS_LUNFILE := 
 
 # TW_HAS_NO_RECOVERY_PARTITION := true (if recovery in boot.img)
+
+# USB driver path = /sys/bus/usb/drivers/usbfs
