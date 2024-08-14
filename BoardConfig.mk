@@ -62,11 +62,13 @@ endif
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 13859744
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 24236032
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 25165824
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3909091328 # 3709MB
 BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_PARTITION_SIZE := 400556032 # 381MB
 TARGET_COPY_OUT_VENDOR := vendor
 
 # Platform
@@ -87,7 +89,65 @@ PLATFORM_VERSION := 16.1.0
 
 # TWRP Configuration
 TW_THEME := portrait_hdpi
-TW_EXTRA_LANGUAGES := true
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
+TW_DEVICE_VERSION := ragebreaker
+TW_MAX_BRIGHTNESS := 190
+
+# # Data partition
+# BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
+# BOARD_USERDATAIMAGE_PARTITION_SIZE := 25686630400 # 24499MB in bytes
+
+# # MTP
+# TW_MTP_DEVICE := /dev/mtp_usb
+# TW_MTP_STORAGE_ID := 65537
+# TW_MTP_DEVICE := ? #(name of device to will show on pc)
+# TARGET_VENDOR_ID := 0x0e8d
+# TARGET_PRODUCT_ID := 0x2008
+# BOARD_USES_MTP := true
+
+
+# Internal storage settings
+#TW_INTERNAL_STORAGE_PATH := "/data/media"
+#TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+
+# # Crypto
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_FBE := true
+# TW_CRYPTO_FS_TYPE := "ext4"
+# TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p33"
+# TW_CRYPTO_MNT_POINT := "/data"
+# TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,discard,noauto_da_alloc,data=ordered"
+# TW_CRYPTO_KEY_LOC := "/dev/block/platform/bootdevice/by-name/metadata"
+TW_INCLUDE_CRYPTO_FBE := true
+TW_USE_FSCRYPT_POLICY := 1
+# TW_INCLUDE_FBE_METADATA_DECRYPT := true
+# BOARD_USES_METADATA_PARTITION := true
+
+# Save Space (Flags from - https://xdaforums.com/t/twrp-flags-for-boardconfig-mk.3333970/)
+TW_EXCLUDE_ENCRYPTED_BACKUPS := true
+TW_EXCLUDE_APP_MANAGER := true
+BOARD_HAS_NO_REAL_SDCARD := true # disables things like sdcard partitioning and may save you some space if TWRP isn't fitting in your recovery partition (for system-as-root?)
+TW_NO_EXFAT_FUSE := true
+TARGET_BOOTANIMATION_TEXTURE_CACHE := false
+TARGET_BOOTANIMATION_USE_RGB565 := true
+#TW_NO_SCREEN_TIMEOUT := true
+TW_EXTRA_LANGUAGES := false
+
+
+# This would work here? (for system-as-root)
+RECOVERY_SDCARD_ON_DATA := true
+
+# # Disables MTP
+#TW_NO_USB_STORAGE := true #(if set, disables MTP)
+#TW_EXCLUDE_MTP := true #(if set, excludes MTP support)
+
+# # ?
+#TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
+# # Not very sure, I guess it allows you to simply pop in the lunfile itself
+#BOARD_UMS_LUNFILE := 
+
+# TW_HAS_NO_RECOVERY_PARTITION := true (if recovery in boot.img)
+
+# USB driver path = /sys/bus/usb/drivers/usbfs
