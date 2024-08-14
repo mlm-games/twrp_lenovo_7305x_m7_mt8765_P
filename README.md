@@ -9,4 +9,4 @@ fastboot flash recovery recovery.img
 
 You can use the recovery name instead of <recovery.img>
 
-This device does not a vbmeta partition so you may have to either replace hexcode of string "verify" in boot.img to 0s or flash the disable_dm_verity_force_decrypt.zip afterwards to diable avb
+This device does not a vbmeta partition so you may have to either replace hexcode of string "verify" in boot.img to 0s or flash the disable_dm_verity_force_decrypt.zip afterwards to disable avb
