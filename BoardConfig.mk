@@ -189,7 +189,7 @@ SHRP_MAINTAINER := ragebreaker
 
 # Your device's recovery path, dont use blindly
 # Default (if not set): N/A
-SHRP_REC := </dev/block/bootdevice/by-name/recovery>
+SHRP_REC := /dev/block/bootdevice/by-name/recovery
 
 # Use this flag only if SHRP_REC is set
 # Default (if not set): N/A
