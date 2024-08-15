@@ -13,7 +13,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, vendor/omni/config/common.mk)
 
 # Inherit from mt8765_P device
-$(call inherit-product, device/lenovo/mt8765_P/device.mk)
+# $(call inherit-product, device/lenovo/mt8765_P/device.mk)
 
 PRODUCT_DEVICE := mt8765_P
 PRODUCT_NAME := omni_mt8765_P
