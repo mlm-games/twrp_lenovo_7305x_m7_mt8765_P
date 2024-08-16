@@ -118,6 +118,7 @@ BOARD_SUPPRESS_SECURE_ERASE := true
 #TW_INTERNAL_STORAGE_PATH := "/data/media"
 #TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 
+#  full disk encryption (FDE) is present in this twrp, not FBE...
 # # Crypto
 #TW_INCLUDE_CRYPTO := true
 # TW_INCLUDE_FBE := true
