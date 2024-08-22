@@ -118,6 +118,7 @@ BOARD_SUPPRESS_SECURE_ERASE := true
 #TW_INTERNAL_STORAGE_PATH := "/data/media"
 #TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 
+#  FDE or FBE
 # # Crypto
 #TW_INCLUDE_CRYPTO := true
 # TW_INCLUDE_FBE := true
@@ -134,7 +135,7 @@ BOARD_SUPPRESS_SECURE_ERASE := true
 # Save Space (Flags from - https://xdaforums.com/t/twrp-flags-for-boardconfig-mk.3333970/)
 TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_EXCLUDE_APP_MANAGER := true
-BOARD_HAS_NO_REAL_SDCARD := true # disables things like sdcard partitioning and may save you some space if TWRP isn't fitting in your recovery partition (for system-as-root?)
+# BOARD_HAS_NO_REAL_SDCARD := true # disables things like sdcard partitioning and may save you some space if TWRP isn't fitting in your recovery partition (for system-as-root?)
 TW_NO_EXFAT_FUSE := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := false
 TARGET_BOOTANIMATION_USE_RGB565 := true
@@ -157,4 +158,3 @@ RECOVERY_SDCARD_ON_DATA := true
 # TW_HAS_NO_RECOVERY_PARTITION := true (if recovery in boot.img)
 
 # USB driver path = /sys/bus/usb/drivers/usbfs
-
