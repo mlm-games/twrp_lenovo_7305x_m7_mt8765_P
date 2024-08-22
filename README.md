@@ -8,7 +8,22 @@ fastboot flash recovery recovery.img
 
 You can use the recovery name instead of <recovery.img>
 
-Thanks to 
+## Features
+
+Works:
+
+- [X] ADB
+- [ ] Decryption
+- [X] Display
+- [X] Touch
+- [X] Flashing
+- [X] MTP
+- [X] Sideload
+- [X] USB OTG
+- [X] Vibrator
+
+
+#### Thanks to 
 - Twrptdgen
 - The recovery from 4pda for reference
 
