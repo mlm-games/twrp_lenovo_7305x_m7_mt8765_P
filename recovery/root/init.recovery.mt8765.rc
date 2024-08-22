@@ -12,6 +12,8 @@ on init
     mkdir /config/usb_gadget/g1/configs/b.1/strings/0x409 0770 shell shell
     mkdir /config/usb_gadget/g1/functions/ffs.adb
     mkdir /config/usb_gadget/g1/functions/mtp.gs0
+    mkdir /config/usb_gadget/g1/functions/fastboot
+    mkdir /config/usb_gadget/g1/functions/sideload
     setprop sys.usb.ffs.aio_compat 1
 
     exec u:r:recovery:s0 -- /sbin/mntl_link
@@ -36,7 +38,7 @@ on property:sys.usb.ffs.ready=1
     write /config/usb_gadget/g1/idVendor 0x18d1
     write /config/usb_gadget/g1/idProduct 0xd001
     
-    # Handle mtp, adb or mtp + adb configurations
+    # Handle mtp, adb, fastboot, sideload, or combinations
     if [ "${sys.usb.config}" == "mtp" ]; then
         write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "mtp"
         symlink /config/usb_gadget/g1/functions/mtp.gs0 /config/usb_gadget/g1/configs/b.1/f1
@@ -44,9 +46,19 @@ on property:sys.usb.ffs.ready=1
         write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "mtp_adb"
         symlink /config/usb_gadget/g1/functions/mtp.gs0 /config/usb_gadget/g1/configs/b.1/f1
         symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f2
-    else
+    elif [ "${sys.usb.config}" == "adb" ]; then
         write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "adb"
         symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f1
+    elif [ "${sys.usb.config}" == "fastboot" ]; then
+        write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "fastboot"
+        symlink /config/usb_gadget/g1/functions/fastboot /config/usb_gadget/g1/configs/b.1/f1
+    elif [ "${sys.usb.config}" == "sideload" ]; then
+        write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "sideload"
+        symlink /config/usb_gadget/g1/functions/sideload /config/usb_gadget/g1/configs/b.1/f1
+    elif [ "${sys.usb.config}" == "sideload,adb" ]; then
+        write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "sideload_adb"
+        symlink /config/usb_gadget/g1/functions/sideload /config/usb_gadget/g1/configs/b.1/f1
+        symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f2
     fi
 
     write /config/usb_gadget/g1/UDC "musb-hdrc"
