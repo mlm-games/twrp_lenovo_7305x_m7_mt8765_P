@@ -133,14 +133,14 @@ BOARD_SUPPRESS_SECURE_ERASE := true
 # BOARD_USES_METADATA_PARTITION := true
 
 # Save Space (Flags from - https://xdaforums.com/t/twrp-flags-for-boardconfig-mk.3333970/)
-TW_EXCLUDE_ENCRYPTED_BACKUPS := true
+# TW_EXCLUDE_ENCRYPTED_BACKUPS := true
 TW_EXCLUDE_APP_MANAGER := true
 # BOARD_HAS_NO_REAL_SDCARD := true # disables things like sdcard partitioning and may save you some space if TWRP isn't fitting in your recovery partition (for system-as-root?)
 TW_NO_EXFAT_FUSE := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := false
 TARGET_BOOTANIMATION_USE_RGB565 := true
 #TW_NO_SCREEN_TIMEOUT := true
-TW_EXTRA_LANGUAGES := false
+TW_EXTRA_LANGUAGES := true
 
 
 # This would work here? (for system-as-root)
