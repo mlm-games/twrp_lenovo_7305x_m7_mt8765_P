@@ -72,6 +72,7 @@ BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_PARTITION_SIZE := 400556032 # 381MB
 TARGET_COPY_OUT_VENDOR := vendor
+TARGET_COPY_OUT_SYSTEM := system
 
 # Platform
 TARGET_BOARD_PLATFORM := mt6739
@@ -161,7 +162,5 @@ RECOVERY_SDCARD_ON_DATA := true
 #TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
 # # Not very sure, I guess it allows you to simply pop in the lunfile itself
 #BOARD_UMS_LUNFILE := 
-
-# TW_HAS_NO_RECOVERY_PARTITION := true (if recovery in boot.img)
 
 # USB driver path = /sys/bus/usb/drivers/usbfs
