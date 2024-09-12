@@ -146,6 +146,9 @@ TW_EXCLUDE_TWRPAPP := true
 TW_EXCLUDE_PYTHON := true
 TW_EXCLUDE_LPTOOLS := true
 TW_EXCLUDE_LPDUMP := true
+TW_EXCLUDE_NANO := true
+TW_EXCLUDE_TZDATA := true
+TW_EXCLUDE_BASH := true
 
 # This would work here? (for system-as-root)
 RECOVERY_SDCARD_ON_DATA := true
