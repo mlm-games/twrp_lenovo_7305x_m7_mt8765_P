@@ -74,3 +74,45 @@ on property:sys.usb.config=none
     write /config/usb_gadget/g1/bDeviceSubClass 0
     write /config/usb_gadget/g1/bDeviceProtocol 0
     setprop sys.usb.state ${sys.usb.config}
+
+
+on property:vold.decrypt=trigger_reset_main
+    write /proc/bootprof "INIT:vold.decrypt=trigger_reset_main"
+    start stop_modem
+    setprop sys.boot_completed 0
+    setprop dev.bootcomplete 0
+
+on property:vold.decrypt=trigger_post_fs_data
+    write /proc/bootprof "INIT:vold.decrypt=trigger_post_fs_data"
+
+on property:vold.decrypt=trigger_restart_min_framework
+    write /proc/bootprof "INIT:vold.decrypt=trigger_restart_min_framework"
+    start nvram_daemon
+    start sysenv_daemon
+    start start_modem
+    start msensord
+    start permission_check
+
+on property:vold.decrypt=trigger_restart_framework
+    write /proc/bootprof "INIT:vold.decrypt=trigger_restart_framework"
+    start nvram_daemon
+    start sysenv_daemon
+    start start_modem
+    start msensord
+    start permission_check
+
+on property:vold.decrypt=trigger_shutdown_framework
+    write /proc/bootprof "INIT:vold.decrypt=trigger_shutdown_framework"
+    start stop_modem
+    setprop sys.boot_completed 0
+    setprop dev.bootcomplete 0
+
+service stop_modem /vendor/bin/md_ctrl 0
+    class main
+    disabled
+    oneshot
+
+service start_modem /vendor/bin/md_ctrl 1
+    class main
+    disabled
+    oneshot
