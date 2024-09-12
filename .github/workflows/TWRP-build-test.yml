@@ -160,8 +160,8 @@ jobs:
           Commit: Most recent [commit](${{ inputs.DEVICE_TREE }}/commit/${{ env.COMMIT_ID }}) during building.
         prerelease: true
 
-    - name: Run LDCheck
-      if: inputs.LDCHECK == 'true'
+    - name: Run LDCheck # Use always for now
+      if: ${{ inputs.LDCHECK }} == 'true' || success()
       run: |
         cd tools
         mv -n libneeds ${GITHUB_WORKSPACE}/android-recovery/out/target/product/${{ inputs.DEVICE_NAME }}/recovery/root/
