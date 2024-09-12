@@ -50,6 +50,7 @@ on:
         - vendorboot
       LDCHECK:
         description: 'Use LDCHECK'
+        required: true
         default: 'true'
         type: boolean
       LDCHECKPATH:
