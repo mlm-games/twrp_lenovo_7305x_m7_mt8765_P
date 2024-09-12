@@ -1,0 +1,97 @@
+on init
+    # Start teei_loader
+    start teei_loader
+
+on fs
+    # Create TEE directories
+    mkdir /data/vendor/thh 0755 system system
+    mkdir /data/vendor/thh/system 0755 system system
+    mkdir /data/vendor/thh/tee_00 0755 system system
+    mkdir /data/vendor/thh/tee_01 0755 system system
+    mkdir /data/vendor/thh/tee_02 0755 system system
+    mkdir /data/vendor/thh/tee_03 0755 system system
+    mkdir /data/vendor/thh/tee_04 0755 system system
+    mkdir /data/vendor/thh/tee_05 0755 system system
+    mkdir /data/vendor/thh/tee_06 0755 system system
+    mkdir /data/vendor/thh/tee_07 0755 system system
+    mkdir /data/vendor/thh/tee 0755 system system
+    mkdir /data/vendor/key_provisioning 0755 system system
+
+    # Copy TAs
+    copy /vendor/thh/ta/TAs_list /data/vendor/thh/TAs_list
+    copy /vendor/thh/ta/c1882f2d885e4e13a8c8e2622461b2fa.ta /data/vendor/thh/c1882f2d885e4e13a8c8e2622461b2fa.ta
+    copy /vendor/thh/ta/d91f322ad5a441d5955110eda3272fc0.ta /data/vendor/thh/d91f322ad5a441d5955110eda3272fc0.ta
+    copy /vendor/thh/ta/c09c9c5daa504b78b0e46eda61556c3a.ta /data/vendor/thh/c09c9c5daa504b78b0e46eda61556c3a.ta
+
+# Start teei_loader
+service teei_loader /vendor/bin/teei_loader
+    class core
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0
+
+# Start init_thh
+service init_thh /vendor/bin/init_thh
+    class core
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
+# Keymaster service
+service keymaster-3-0 /vendor/bin/hw/android.hardware.keymaster@3.0-service
+    user root
+    group root drmrpc
+    disabled
+    seclabel u:r:recovery:s0
+
+# Gatekeeper service
+service gatekeeper-1-0 /vendor/bin/hw/android.hardware.gatekeeper@1.0-service
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0
+
+# Keymaster attestation service
+service keymaster_attestation-1-1 /vendor/bin/hw/vendor.mediatek.hardware.keymaster_attestation@1.1-service
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0
+
+on property:crypto.ready=1
+    start teei_loader
+    start init_thh
+    start keymaster-3-0
+    start gatekeeper-1-0
+    start keymaster_attestation-1-1
+
+on property:hwservicemanager.ready=true
+    start teei_loader
+    start init_thh
+    start keymaster-3-0
+    start gatekeeper-1-0
+    start keymaster_attestation-1-1
+
+on property:ro.crypto.state=unsupported
+    stop teei_loader
+    stop init_thh
+    stop keymaster-3-0
+    stop gatekeeper-1-0
+    stop keymaster_attestation-1-1
+
+on property:ro.crypto.state=unencrypted
+    stop teei_loader
+    stop init_thh
+    stop keymaster-3-0
+    stop gatekeeper-1-0
+    stop keymaster_attestation-1-1
+
+on property:twrp.decrypt.done=true
+    stop teei_loader
+    stop init_thh
+    stop keymaster-3-0
+    stop gatekeeper-1-0
+    stop keymaster_attestation-1-1
