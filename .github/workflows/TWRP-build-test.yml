@@ -30,15 +30,15 @@ on:
       DEVICE_PATH:
         description: 'DEVICE_PATH'
         required: true
-        default: 'device/lenovo/7305X'
+        default: 'device/lenovo/mt8765_P'
       DEVICE_NAME:
         description: 'DEVICE_NAME'
         required: true
-        default: '7305X'
+        default: 'mt8765_P'
       MAKEFILE_NAME:
         description: 'MAKEFILE_NAME (without including .mk, Example: omni_7304F)'
         required: true
-        default: 'omni_7305X'
+        default: 'omni_mt8765_P'
       BUILD_TARGET:
         description: 'Specify your Build Target' # Pick among boot, recovery and vendor_boot
         required: true
