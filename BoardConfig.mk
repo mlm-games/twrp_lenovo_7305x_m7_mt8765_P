@@ -101,41 +101,14 @@ TW_MAX_BRIGHTNESS := 190
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 # BOARD_ROOT_EXTRA_FOLDERS := bluetooth dsp firmware persist
 BOARD_SUPPRESS_SECURE_ERASE := true
+RECOVERY_SDCARD_ON_DATA := true  # This would work here ig (for system-as-root)
 
-# # Data partition
-# BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
-# BOARD_USERDATAIMAGE_PARTITION_SIZE := 25686630400 # 24499MB in bytes
-
-# # MTP
-# TW_MTP_DEVICE := /dev/mtp_usb
-# TW_MTP_STORAGE_ID := 65537
-# TW_MTP_DEVICE := ? #(name of device to will show on pc)
-# TARGET_VENDOR_ID := 0x0e8d
-# TARGET_PRODUCT_ID := 0x2008
-# BOARD_USES_MTP := true
-
-
-# Internal storage settings
-#TW_INTERNAL_STORAGE_PATH := "/data/media"
-#TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
-
-#  FDE or FBE
-# # Crypto (Doesnt work)
+# Crypto (Doesnt work)
 TW_INCLUDE_CRYPTO := true
-# TW_INCLUDE_FBE := true
-# TW_CRYPTO_FS_TYPE := "ext4"
-# TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p33"
-# TW_CRYPTO_MNT_POINT := "/data"
-# TW_CRYPTO_FS_OPTIONS := "noatime,nosuid,nodev,noauto_da_alloc,errors=panic wait,check,formattable,quota,reservedsize=128m,formattable,resize"
-# TW_CRYPTO_KEY_LOC := "/dev/block/platform/bootdevice/by-name/metadata"
-TW_INCLUDE_CRYPTO_FBE := true
-# TW_USE_FSCRYPT_POLICY := 1
-# TW_INCLUDE_FBE_METADATA_DECRYPT := true
-BOARD_USES_METADATA_PARTITION := true
-# # TW_INCLUDE_CRYPTO_FDE := true
+# TW_HW_DISK_ENCRYPTION := true
 
 # Save Space (Flags from - https://xdaforums.com/t/twrp-flags-for-boardconfig-mk.3333970/)
-# TW_EXCLUDE_ENCRYPTED_BACKUPS := true
+# TW_EXCLUDE_ENCRYPTED_BACKUPS := true # Causes libopenea missing error if false
 TW_EXCLUDE_APP_MANAGER := true
 # BOARD_HAS_NO_REAL_SDCARD := true # disables things like sdcard partitioning and may save you some space if TWRP isn't fitting in your recovery partition (for system-as-root?)
 TW_NO_EXFAT_FUSE := true
@@ -151,16 +124,45 @@ TW_EXCLUDE_NANO := true
 TW_EXCLUDE_TZDATA := true
 TW_EXCLUDE_BASH := true
 
-# This would work here? (for system-as-root)
-RECOVERY_SDCARD_ON_DATA := true
+# Unused ones below
+
+
+# # Data partition
+# BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
+# BOARD_USERDATAIMAGE_PARTITION_SIZE := 25686630400 # 24499MB in bytes
+
+# # MTP
+# TW_MTP_DEVICE := /dev/mtp_usb
+# TW_MTP_STORAGE_ID := 65537
+# TW_MTP_DEVICE := ? #(name of device to will show on pc)
+# TARGET_VENDOR_ID := 0x0e8d
+# TARGET_PRODUCT_ID := 0x2008
+# BOARD_USES_MTP := true
+
+
+# Internal storage settings
+# TW_INTERNAL_STORAGE_PATH := "/data/media"
+# TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+
+#  FDE or FBE
+# TW_INCLUDE_FBE := true
+# TW_CRYPTO_FS_TYPE := "ext4"
+# TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p33"
+# TW_CRYPTO_MNT_POINT := "/data"
+# TW_CRYPTO_FS_OPTIONS := "noatime,nosuid,nodev,noauto_da_alloc,errors=panic wait,check,formattable,quota,reservedsize=128m,formattable,resize"
+# TW_CRYPTO_KEY_LOC := "/dev/block/platform/bootdevice/by-name/metadata"
+# TW_INCLUDE_CRYPTO_FBE := true
+# TW_USE_FSCRYPT_POLICY := 1
+# TW_INCLUDE_FBE_METADATA_DECRYPT := true
+# BOARD_USES_METADATA_PARTITION := true
 
 # # Disables MTP
-#TW_NO_USB_STORAGE := true #(if set, disables MTP)
-#TW_EXCLUDE_MTP := true #(if set, excludes MTP support)
+# TW_NO_USB_STORAGE := true #(if set, disables MTP)
+# TW_EXCLUDE_MTP := true #(if set, excludes MTP support)
 
 # # ?
-#TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
+# TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/class/android_usb/android0/f_mass_storage/lun0/file"
 # # Not very sure, I guess it allows you to simply pop in the lunfile itself
-#BOARD_UMS_LUNFILE := 
+# BOARD_UMS_LUNFILE := 
 
 # USB driver path = /sys/bus/usb/drivers/usbfs
