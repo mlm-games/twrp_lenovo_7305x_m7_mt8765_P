@@ -73,6 +73,5 @@ jobs:
     - name: Run LDCHECK
       uses: mlm-games/ldcheck-action@main
       with:
-        OUTPUT_DIR: ${{ env.OUTPUT_DIR }}
         LDCHECKPATH: system/bin/teei_loader
       continue-on-error: true
