@@ -41,6 +41,7 @@ jobs:
     - name: Build TWRP Recovery
       uses: mlm-games/TWRP-recovery-build-action@main 
       with:
+        MANIFEST_BRANCH: 'twrp-9.0'
         DEVICE_TREE_BRANCH: 'test-decrypt'
 
     - name: Upload Recovery Image
