@@ -84,5 +84,5 @@ jobs:
       - name: Run LDCHECK
         uses: mlm-games/ldcheck-action@main
         with:
-          LDCHECKPATH: system/bin/teei_loader
+          LDCHECKPATH: vendor/bin/teei_loader
         continue-on-error: true
