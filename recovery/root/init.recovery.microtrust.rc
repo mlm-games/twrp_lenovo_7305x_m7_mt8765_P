@@ -31,15 +31,6 @@ service teei_loader /vendor/bin/teei_loader
     disabled
     seclabel u:r:recovery:s0
 
-# Start init_thh
-service init_thh /vendor/bin/init_thh
-    class core
-    user root
-    group root
-    disabled
-    oneshot
-    seclabel u:r:recovery:s0
-
 # Keymaster service
 service keymaster-3-0 /vendor/bin/hw/android.hardware.keymaster@3.0-service
     user root
@@ -63,35 +54,30 @@ service keymaster_attestation-1-1 /vendor/bin/hw/vendor.mediatek.hardware.keymas
 
 on property:crypto.ready=1
     start teei_loader
-    start init_thh
     start keymaster-3-0
     start gatekeeper-1-0
     start keymaster_attestation-1-1
 
 on property:hwservicemanager.ready=true
     start teei_loader
-    start init_thh
     start keymaster-3-0
     start gatekeeper-1-0
     start keymaster_attestation-1-1
 
 on property:ro.crypto.state=unsupported
     stop teei_loader
-    stop init_thh
     stop keymaster-3-0
     stop gatekeeper-1-0
     stop keymaster_attestation-1-1
 
 on property:ro.crypto.state=unencrypted
     stop teei_loader
-    stop init_thh
     stop keymaster-3-0
     stop gatekeeper-1-0
     stop keymaster_attestation-1-1
 
 on property:twrp.decrypt.done=true
     stop teei_loader
-    stop init_thh
     stop keymaster-3-0
     stop gatekeeper-1-0
     stop keymaster_attestation-1-1
