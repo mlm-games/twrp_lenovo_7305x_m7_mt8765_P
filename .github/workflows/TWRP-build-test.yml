@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: 'Branch to build' # Builds default branch if not mentioned
+        description: 'Branch to build (default branch if not mentioned)'
         required: false
         default: ''
         type: string
