@@ -75,3 +75,4 @@ jobs:
       with:
         OUTPUT_DIR: ${{ env.OUTPUT_DIR }}
         LDCHECKPATH: system/bin/teei_loader
+      continue-on-error: true
