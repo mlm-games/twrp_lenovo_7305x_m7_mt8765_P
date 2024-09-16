@@ -86,5 +86,5 @@ jobs:
         uses: mlm-games/ldcheck-action@main
         with:
           OUTPUT_DIR: ${{ env.OUTPUT_DIR }}
-          LDCHECKPATH: sbin/android.hardware.keymaster@3.0-service
+          LDCHECKPATH: 'sbin/android.hardware.keymaster@3.0-service'
         continue-on-error: true
