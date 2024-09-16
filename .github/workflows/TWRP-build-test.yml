@@ -80,10 +80,11 @@ jobs:
             MD5 (img): ${{ env.MD5_IMG }}
             MD5 (zip): ${{ env.MD5_ZIP }}
           prerelease: ${{ env.MARK_PRERELEASE }}
+        continue-on-error: true
 
       - name: Run LDCHECK
         uses: mlm-games/ldcheck-action@main
         with:
           OUTPUT_DIR: ${{ env.OUTPUT_DIR }}
-          LDCHECKPATH: vendor/bin/teei_loader
+          LDCHECKPATH: sbin/android.hardware.keymaster@3.0-service
         continue-on-error: true
