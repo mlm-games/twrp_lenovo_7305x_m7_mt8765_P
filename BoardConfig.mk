@@ -25,12 +25,19 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := generic
 
+TARGET_USES_64_BIT_BINDER := true
+
+ENABLE_CPUSETS := true
+ENABLE_SCHEDBOOST := true
+
 # APEX
 OVERRIDE_TARGET_FLATTEN_APEX := true
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := mt8765_P
 TARGET_NO_BOOTLOADER := true
+TARGET_USES_UEFI := true
+
 
 # Display
 TARGET_SCREEN_DENSITY := 160
@@ -52,6 +59,11 @@ BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 
+# Avb
+BOARD_AVB_ENABLE := true
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --set_hashtree_disabled_flag
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 2
+
 # Kernel - prebuilt
 # TARGET_FORCE_PREBUILT_KERNEL := true
 # ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
@@ -59,7 +71,6 @@ TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
 
 # Partitions
-BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 13859744
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 25165824
@@ -72,7 +83,6 @@ BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_VENDORIMAGE_PARTITION_SIZE := 400556032 # 381MB
 TARGET_COPY_OUT_VENDOR := vendor
-TARGET_COPY_OUT_SYSTEM := system
 
 # Platform
 TARGET_BOARD_PLATFORM := mt6739
@@ -80,9 +90,6 @@ TARGET_BOARD_PLATFORM := mt6739
 # File systems
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-
-# Security patch level
-VENDOR_SECURITY_PATCH := 2021-08-01
 
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
@@ -96,15 +103,23 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 TW_USE_TOOLBOX := true
 TW_DEVICE_VERSION := ragebreaker
 TW_MAX_BRIGHTNESS := 190
+TARGET_USES_MKE2FS := true
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_SKIP_COMPATIBILITY_CHECK := true
+TW_SCREEN_BLANK_ON_BOOT := true
 
 # System as root
-BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
-# BOARD_ROOT_EXTRA_FOLDERS := bluetooth dsp firmware persist
+# BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
+BOARD_ROOT_EXTRA_FOLDERS := bluetooth dsp firmware persist metadata
 BOARD_SUPPRESS_SECURE_ERASE := true
 RECOVERY_SDCARD_ON_DATA := true  # This would work here ig (for system-as-root)
 
-# Crypto (Doesnt work)
+# Crypto (trying for fbe only)
 TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
 # TW_HW_DISK_ENCRYPTION := true
 
 # Save Space (Flags from - https://xdaforums.com/t/twrp-flags-for-boardconfig-mk.3333970/)
@@ -151,7 +166,6 @@ TW_EXCLUDE_BASH := true
 # TW_CRYPTO_MNT_POINT := "/data"
 # TW_CRYPTO_FS_OPTIONS := "noatime,nosuid,nodev,noauto_da_alloc,errors=panic wait,check,formattable,quota,reservedsize=128m,formattable,resize"
 # TW_CRYPTO_KEY_LOC := "/dev/block/platform/bootdevice/by-name/metadata"
-# TW_INCLUDE_CRYPTO_FBE := true
 # TW_USE_FSCRYPT_POLICY := 1
 # TW_INCLUDE_FBE_METADATA_DECRYPT := true
 # BOARD_USES_METADATA_PARTITION := true
