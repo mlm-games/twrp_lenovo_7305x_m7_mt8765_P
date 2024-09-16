@@ -4,7 +4,7 @@ on init
 
     # Create a more standard /dev/block layout for our scripts
     symlink /dev/block/platform/bootdevice /dev/block/bootdevice
-    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw:/system/lib64/hw
+    export LD_LIBRARY_PATH /sbin/lib64:/vendor/lib64:/vendor/lib64/hw:/sbin/lib64/hw
 
 on fs
     # Create TEE directories
@@ -90,18 +90,18 @@ on property:twrp.decrypt.done=true
     stop keymaster_attestation-1-1
 
 
-service keystore_auth /system/bin/keystore_auth
-    oneshot
-    user system
-    group root
-    disabled
-    seclabel u:r:recovery:s0
+# service keystore_auth /sbin/bin/keystore_auth
+#     oneshot
+#     user sbin
+#     group root
+#     disabled
+#     seclabel u:r:recovery:s0
 
-service keystore /system/bin/keystore /tmp/misc/keystore
-    user root
-    group root drmrpc readproc
-    disabled
-    seclabel u:r:recovery:s0
+# service keystore /sbin/bin/keystore /tmp/misc/keystore
+#     user root
+#     group root drmrpc readproc
+#     disabled
+#     seclabel u:r:recovery:s0
 
 on post-fs
     restorecon_recursive /metadata
