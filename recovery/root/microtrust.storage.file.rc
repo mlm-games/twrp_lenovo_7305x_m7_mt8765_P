@@ -17,5 +17,3 @@ on late-fs
 	chown system system /mnt/vendor/persist/rpmb
 	chmod 0771 /mnt/vendor/persist/rpmb
     restorecon_recursive /mnt/vendor/persist/rpmb
-
-seclabel u:r:recovery:s0
