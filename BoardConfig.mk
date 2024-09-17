@@ -119,6 +119,7 @@ RECOVERY_SDCARD_ON_DATA := true  # This would work here ig (for system-as-root)
 # Crypto (trying for fbe only)
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
+BOARD_USES_METADATA_PARTITION := true
 # TW_HW_DISK_ENCRYPTION := true
 
 # Save Space (Flags from - https://xdaforums.com/t/twrp-flags-for-boardconfig-mk.3333970/)
@@ -167,7 +168,6 @@ TW_EXCLUDE_BASH := true
 # TW_CRYPTO_KEY_LOC := "/dev/block/platform/bootdevice/by-name/metadata"
 # TW_USE_FSCRYPT_POLICY := 1
 # TW_INCLUDE_FBE_METADATA_DECRYPT := true
-# BOARD_USES_METADATA_PARTITION := true
 
 # # Disables MTP
 # TW_NO_USB_STORAGE := true #(if set, disables MTP)

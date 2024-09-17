@@ -1,9 +1,22 @@
+import /microtrust.rc
+import /microtrust.storage.file.rc
+import /microtrust.storage.proinfo.rc
+import /microtrust.storage.rpmb.rc
+
 on fs
     export ANDROID_ROOT /system_root
     install_keyring
 
 on early-fs
+# We need vold early for metadata encryption
     start vold
+
+on late-fs
+    # Wait for keymaster
+    exec_start wait_for_keymaster
+
+    # Mount RW partitions which need run fsck
+    mount_all /vendor/etc/fstab.${ro.boot.hardware.platform} --late
 
 on init
     start hwservicemanager
