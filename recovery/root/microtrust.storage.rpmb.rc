@@ -2,5 +2,4 @@
 service istorageproxyd /sbin/istorageproxyd -d /dev/trusty-ipc-dev0 -f /data/vendor/thh/trusty -p com.android.trusty.storage.proxy -r /dev/block/mmcblk0rpmb
     group root
     class late_start
-
-seclabel u:r:recovery:s0
+    seclabel u:r:recovery:s0
