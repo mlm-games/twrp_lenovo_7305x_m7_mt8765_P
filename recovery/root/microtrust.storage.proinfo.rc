@@ -4,9 +4,7 @@ service storage_proinfo /sbin/istorageproxyd  -d /dev/trusty-ipc-dev0 -p com.and
     group root
     disabled
     oneshot
+    seclabel u:r:recovery:s0
 
 on fs
     start storage_proinfo
-
-
-seclabel u:r:recovery:s0
