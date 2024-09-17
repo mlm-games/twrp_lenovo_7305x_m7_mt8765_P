@@ -19,6 +19,7 @@ on late-fs
     mount_all /vendor/etc/fstab.${ro.boot.hardware.platform} --late
 
 on init
+    export LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/sbin
     start hwservicemanager
     start servicemanager
 
