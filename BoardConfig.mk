@@ -119,6 +119,7 @@ RECOVERY_SDCARD_ON_DATA := true  # This would work here ig (for system-as-root)
 # Crypto (trying for fbe only)
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
 BOARD_USES_METADATA_PARTITION := true
 # TW_HW_DISK_ENCRYPTION := true
 
