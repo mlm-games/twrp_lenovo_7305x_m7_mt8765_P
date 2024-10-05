@@ -90,5 +90,5 @@ jobs:
         uses: mlm-games/ldcheck-action@main
         with:
           OUTPUT_DIR: ${{ env.OUTPUT_DIR }}
-          LDCHECKPATH: './sbin/teei_loader'
+          LDCHECKPATH: 'sbin/teei_loader'
         continue-on-error: true
